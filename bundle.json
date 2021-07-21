@@ -1,0 +1,9 @@
+{
+    "edgeworker-version": "1.8",
+    "bundle-version" : 1,
+    "api-version" : "0.3",
+    "description" : "Token Authentication using Edgeworkers",
+    "misc" : {
+        "author" : "Achuthananda M P"
+     }
+}
