@@ -1,0 +1,1 @@
+# Edgeworkers Token Auth
