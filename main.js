@@ -23,6 +23,7 @@ export function responseProvider(request) {
     endTime: token_end_time,
     escapeEarly: false,
   });
+  
   var acl = ["/*"];
   var token = ea.generateACLToken(acl);
   console.log("token is " + token);
