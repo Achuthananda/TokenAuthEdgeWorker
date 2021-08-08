@@ -1,5 +1,5 @@
 import { logger } from "log"; // Import the logger module export function
-import { EdgeAuth } from "edgeauth.js";
+import { EdgeAuth } from "utils/edgeauth.js";
 import { httpRequest } from "http-request";
 import { createResponse } from "create-response";
 

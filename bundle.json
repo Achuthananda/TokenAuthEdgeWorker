@@ -1,9 +1,9 @@
 {
-  "edgeworker-version": "1.3",
+  "edgeworker-version": "2.1",
   "bundle-version": 1,
   "api-version": "0.1",
   "description": "Token Generation using Edgeworkers",
   "misc": {
-    "author": "Sharath"
+    "author": "Achuth"
   }
 }
