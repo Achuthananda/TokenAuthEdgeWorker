@@ -25,7 +25,6 @@ jobs:
       uses: Achuthananda/akamai-edgeworker-action@1.6
       env:
         EDGERC: ${{ secrets.EDGERC }}
-        WORKER_DIR: workerdirname # Optional directory for worker code (relative)
       with:
         edgeworkersId: '6285'
         network: 'staging'
