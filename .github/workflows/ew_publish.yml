@@ -27,6 +27,6 @@ jobs:
         EDGERC: ${{ secrets.EDGERC }}
       with:
         edgeworkersId: '6285'
-        network: 'staging'
+        network: 'production'
         accountSwitchKey: 'B-M-28QYF3M'
         groupid: '12345' #Akamai GroupID used for registering new edgeworkers
