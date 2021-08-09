@@ -20,11 +20,11 @@ export async function responseProvider(request) {
   logger.log("The request's cpcode is: %s", request.cpCode);
 
   const params = new URLSearchParams(request.query);
-  const partnerId = params.get('partner');
+  const partnerId = params.get('tokenFor');
 
   // Respond with an error if code is not passed in.
   if(!partnerId){
-    return createErrorResponse('PartnerId is mandatory');
+    return createErrorResponse('tokenFor Parameter is mandatory');
   }
 
   let EA_ENCRYPTION_KEY = "";
@@ -57,7 +57,7 @@ export async function responseProvider(request) {
   return Promise.resolve(
     createResponse(
       200,
-      { "Content-Type": ["application/json"],"Partner-Type": [partnerId],"Key":[EA_ENCRYPTION_KEY] },
+      { "Content-Type": ["application/json"],"Token-For": [partnerId] },
       JSON.stringify(token)
     )
   );

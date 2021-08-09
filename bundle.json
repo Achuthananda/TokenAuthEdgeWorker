@@ -1,5 +1,5 @@
 {
-  "edgeworker-version": "2.1.4",
+  "edgeworker-version": "2.1.5",
   "bundle-version": 1,
   "api-version": "0.1",
   "description": "Token Generation using Edgeworkers",
