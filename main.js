@@ -53,7 +53,6 @@ export async function responseProvider(request) {
 
   var acl = ["/*"];
   var token = ea.generateACLToken(acl);
-  //console.log("token is " + token);
 
   return Promise.resolve(
     createResponse(
