@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Deploy EW
-      uses: Achuthananda/akamai-edgeworker-action@1.6
+      uses: Achuthananda/akamai-edgeworker-action@1.7
       env:
         EDGERC: ${{ secrets.EDGERC }}
       with:
