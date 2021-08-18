@@ -1,9 +1,9 @@
 {
-  "edgeworker-version": "2.1.5",
+  "edgeworker-version": "2.2.2",
   "bundle-version": 1,
   "api-version": "0.1",
   "description": "Token Generation using Edgeworkers",
   "misc": {
-    "author": "Achuth"
+    "authors": "Sharath Rao, Achuthananda M P, Suhas Bharadwaj"
   }
 }
