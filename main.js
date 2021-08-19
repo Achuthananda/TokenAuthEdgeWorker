@@ -29,12 +29,15 @@ async function entitlementCheck(jwtToken) {
 
   //is JWT valid?
   if (jwtData.isvalid) {
-    console.log("JWT is valid");
+    logger.log("JWT is valid");
   }
   //claim check
   if (jwtData.payload.admin) {
-    console.log("JWT claim check");
+    logger.log("JWT claim check");
   }
+
+  //doOtherEntitlementChecks();
+
   return jwtData.isvalid;
 }
 
@@ -63,7 +66,7 @@ export async function responseProvider(request) {
     );
   }
 
-  //get the right key to generate token from EdgeKV
+  //get the right key to generate token from EdgeKV or keySet
   const params = new URLSearchParams(request.query);
   const partnerId = params.get("tokenFor");
   if (!partnerId) {
@@ -73,17 +76,34 @@ export async function responseProvider(request) {
   let EA_ENCRYPTION_KEY = "";
   let EA_ENCRYPTION_DEFAULT_KEY = "b6e9bb9361116402c8e0ee6de2eb2ec6";
 
-  const edgeKv = new EdgeKV({ namespace: "tokenAuth", group: "grp1" });
-  try {
-    EA_ENCRYPTION_KEY = await edgeKv.getText({
-      item: partnerId,
-      default_value: EA_ENCRYPTION_DEFAULT_KEY,
-    });
-  } catch (error) {
-    logger.log("Edgekv error!");
-    //return createErrorResponse(error.toString());
+  let isEKVrequired = params.get("ekv") ? params.get("ekv").toString() : 0;
+  if (isEKVrequired) {
+    logger.log("ekv is required -> %o ", isEKVrequired);
+    const edgeKv = new EdgeKV({ namespace: "tokenAuth", group: "grp1" });
+    try {
+      EA_ENCRYPTION_KEY = await edgeKv.getText({
+        item: partnerId,
+        default_value: EA_ENCRYPTION_DEFAULT_KEY,
+      });
+    } catch (error) {
+      logger.log("Edgekv error!");
+      return createErrorResponse(error.toString());
+    }
+  } else {
+    logger.log("no ekv required");
+    let keySet = {
+      partner1: "b6e9bb9361116402c8e0ee6de2eb2ec1",
+      partner2: "337b571d2266cb95bb1b42584b14c174",
+      partner3: "b6e9bb9361116402c8e0ee6de2eb2ec2",
+    };
+    let pickedkey = keySet[partnerId];
+    if (!pickedkey) {
+      return createErrorResponse("partnerid does not exist in the keySet");
+    }
+    EA_ENCRYPTION_KEY = pickedkey;
   }
-  EA_ENCRYPTION_KEY = "b6e9bb9361116402c8e0ee6de2eb2ec6";
+
+  //EA_ENCRYPTION_KEY = "b6e9bb9361116402c8e0ee6de2eb2ec6";
 
   //Generate Token
   let token_start_time = Math.trunc(Date.now() / 1000);
@@ -118,7 +138,7 @@ export async function responseProvider(request) {
       key: EA_ENCRYPTION_KEY,
       startTime: token_start_time,
       endTime: token_end_time,
-      escapeEarly: true,
+      escapeEarly: false,
     });
     token = ea.generateURLToken(urlPath);
   }
