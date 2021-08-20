@@ -69,7 +69,7 @@ akamai edgeworkers activate 6424 PRODUCTION 2.0
 
 
 ### Testing
-Generate the ACL Token for Partner2 . Pass the Authorization Header.
+Generate the ACL Token for Partner2 . Pass the Authorization Header. <br />
 Request
 ```
 curl 'http://token.ageekwrites.tech/tg?tokenFor=partner2' -H 'Connection: keep-alive'   -H 'Pragma: akamai-x-ew-debug, akamai-x-ew-debug-rp' --compressed   --insecure -H "Host:token.ageekwrites.tech" --verbose -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.fHnA09dGcktdK7cDE3p3aqB1BHBDdmt-DkI3wgk6PZpLEJxCmCsi7DamHdj_rQMMnkVG2YyiSHBQRHqHDLBlZw"
@@ -79,7 +79,7 @@ Response
 {"tokenvalue":"st=1629452072~exp=1629452372~acl=/*~hmac=d7580c326618a78f12f1b108445468d5fd43ebb6d4e5a99c05ec3be433c02838"}
 ```
 
-Generate the URL Token for Partner2. Pass the Authorization Header.
+Generate the URL Token for Partner2. Pass the Authorization Header. <br />
 Request 
 ```
 curl 'http://token.ageekwrites.tech/tg?tokenFor=partner2' -H 'Connection: keep-alive'   -H 'Pragma: akamai-x-ew-debug, akamai-x-ew-debug-rp' --compressed   --insecure -H "Host:token.ageekwrites.tech" --verbose -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.fHnA09dGcktdK7cDE3p3aqB1BHBDdmt-DkI3wgk6PZpLEJxCmCsi7DamHdj_rQMMnkVG2YyiSHBQRHqHDLBlZw" -H "urlpath:/a/b/c/master.m3u8
